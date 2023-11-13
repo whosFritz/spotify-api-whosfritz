@@ -1,6 +1,6 @@
 # 🎵 Spotify API - whosFritz
 
-This project utilizes the Spotify API to display the user's favorite song based on the last 4 weeks. The backend is built with Flask, and the data is stored in MongoDB.
+This project utilizes the Spotify API to display the my favorite song on my [website](https://whosfritz.de) based on the last 4 weeks. The backend is built with Flask, and the data is stored in MongoDB.
 
 ## Table of Contents
 
@@ -56,31 +56,33 @@ Before running the application, you need to have the following installed:
 
 ### Usage
 
-1.  Set up your Spotify API credentials and MongoDB URI by creating a .env file in the project root:
+1. Set up your Spotify Dev Accout [here](https://developer.spotify.com/dashboard)
+2. Create an App and define the callback-url
+3. Set up your Spotify API credentials and MongoDB URI by creating a .env file in the project root:
 
-    ```bash
-    SPOTIPY_CLIENT_ID=your_client_id
-    SPOTIPY_CLIENT_SECRET=your_client_secret
-    SPOTIPY_REDIRECT_URI=your_redirect_uri
-    MONGODB_URI=your_mongodb_uri
-    ENDPOINT_PATH=/your/api/endpoint
-    ```
+   ```bash
+   SPOTIPY_CLIENT_ID=your_client_id
+   SPOTIPY_CLIENT_SECRET=your_client_secret
+   SPOTIPY_REDIRECT_URI=your_redirect_uri
+   MONGODB_URI=your_mongodb_uri
+   ENDPOINT_PATH=/your/api/endpoint
+   ```
 
-2.  Run the Flask application:
+4. Run the Flask application:
 
-    ```bash
-    python app.py
-    ```
+   ```bash
+   python app.py
+   ```
 
-3.  Access the API endpoint in your web browser or integrate it into your website.
+5. Access the API endpoint in your web browser or integrate it into your website.
 
-    The API endpoint is accessible at:
+   The API endpoint is accessible at:
 
-    ```bash
-    curl http://localhost:8088/your/api/endpoint
-    ```
+   ```bash
+   curl http://localhost:8088/your/api/endpoint
+   ```
 
-    This endpoint returns JSON data containing the user's favorite song information.
+   This endpoint returns JSON data containing the user's favorite song information.
 
 ### Contributing
 
