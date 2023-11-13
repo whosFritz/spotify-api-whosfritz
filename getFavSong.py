@@ -33,7 +33,8 @@ def returnMyFavSong():
         song_id = song['id']
         # Convert the date string into a timestamp in format YYYY-MM-DD HH:MM:SS
         song_last_updated = time.strftime('%Y-%m-%d %H:%M:%S')
-        
+        last_checked = time.strftime('%Y-%m-%d %H:%M:%S')  # Add this line
+
         # Check if the song already exists in the database
         existing_song = collection.find_one({'spotify_id': song_id})
         if existing_song is None:
@@ -42,8 +43,13 @@ def returnMyFavSong():
                 'spotify_id': song_id,
                 'track_name': song_name,
                 'last_updated': song_last_updated,
+                'last_checked': last_checked,  # Add this line
             }
             collection.insert_one(song_document)
+        else:
+            # Update the last_checked field
+            collection.update_one({'spotify_id': song_id}, {'$set': {'last_checked': last_checked}})
+
 
 # Call the function to get and save the favorite song
 returnMyFavSong()
