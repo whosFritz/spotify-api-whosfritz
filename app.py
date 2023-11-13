@@ -10,6 +10,7 @@ load_dotenv()
 mongodb_uri = os.getenv('MONGODB_URI')
 endpoint_path = os.getenv('ENDPOINT_PATH', '/spotifywhosfritz')  # Default value is '/spotifywhosfritz'
 
+# Define Flask app
 app = Flask(__name__)
 
 # Connect to MongoDB
@@ -37,5 +38,6 @@ def endpointFavSong():
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8088)
+if __name__ == "__main__":
+    from waitress import serve
+    serve(app, host="0.0.0.0", port=8088)
