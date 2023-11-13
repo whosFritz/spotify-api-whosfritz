@@ -1,6 +1,6 @@
 # 🎵 Spotify API - whosFritz
 
-This project utilizes the Spotify API to display the my favorite song on my [website](https://whosfritz.de) based on the last 4 weeks. The backend is built with Flask, and the data is stored in MongoDB.
+This project utilizes the Spotify API to display my favorite song on my [website](https://whosfritz.de) based on the last 4 weeks. The backend is built with Flask, and the data is stored in MongoDB.
 
 ## Table of Contents
 
