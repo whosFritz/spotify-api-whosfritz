@@ -28,10 +28,10 @@ def endpointFavSong():
         song_last_updated = song_document['last_updated']
         song_llast_checked = song_document['last_checked']      
         response = jsonify(
-            favSongID=song_id,
-            favSongName=song_name, 
-            lastUpdated=song_last_updated,
-            lastChecked=song_llast_checked
+            fav_Song_ID=song_id,
+            fav_Song_Name=song_name, 
+            last_Updated=song_last_updated,
+            last_Checked=song_llast_checked
         )
     else:
         response = jsonify(error="No favorite song found.")
