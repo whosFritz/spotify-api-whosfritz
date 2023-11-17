@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 from pymongo import MongoClient
-import time
+import datetime
 
 # Load environment variables from .env file
 load_dotenv()
@@ -41,8 +41,8 @@ def returnMyFavSong():
         song_name = song['name']
         song_id = song['id']
         # Convert the date string into a timestamp in format YYYY-MM-DD HH:MM:SS
-        song_last_updated = time.strftime('%Y-%m-%d %H:%M:%S')
-        last_checked = time.strftime('%Y-%m-%d %H:%M:%S')  # Add this line
+        song_last_updated = datetime.datetime.now()
+        last_checked = datetime.datetime.now()
 
         # Check if the song already exists in the database
         existing_song = collection.find_one({'spotify_id': song_id})

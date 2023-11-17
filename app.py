@@ -25,16 +25,16 @@ def endpointFavSong():
     if song_document:
         song_name = song_document['track_name']
         song_id = song_document['spotify_id']
-        song_last_updated = song_document['last_updated']
-        song_llast_checked = song_document['last_checked']      
+        song_last_updated = song_document['last_updated'].strftime("%d.%m.%Y %H:%M:%S")
+        song_last_checked = song_document['last_checked'].strftime("%d.%m.%Y %H:%M:%S")  
         response = jsonify(
             fav_Song_ID=song_id,
             fav_Song_Name=song_name, 
             last_Updated=song_last_updated,
-            last_Checked=song_llast_checked
+            last_Checked=song_last_checked
         )
     else:
-        response = jsonify(error="No favorite song found.")
+        response = jsonify(error="No favorite song found.", status=404)
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
 
