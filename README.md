@@ -4,6 +4,10 @@ This project utilizes the Spotify API with the [spotipy](https://github.com/spot
 
 
 ![svg](/how-it-works.svg)
+![png](/diagram-export-29.11.2023-19_34_15.png)
+![png](/diagram-export-29.11.2023-19_33_02.png)
+
+
 
 ## Table of Contents
 
