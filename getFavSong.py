@@ -52,7 +52,7 @@ def returnMyFavSong():
                 'spotify_id': song_id,
                 'track_name': song_name,
                 'last_updated': song_last_updated,
-                'last_checked': last_checked,  # Add this line
+                'last_checked': last_checked,
             }
             collection.insert_one(song_document)
         else:
