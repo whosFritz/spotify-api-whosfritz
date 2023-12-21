@@ -48,7 +48,7 @@ def returnMyFavSong():
             last_checked = datetime.datetime.now()
 
             # Check if the song already exists in the database
-            existing_song = collection.find_one({'spotify_id': song_id, 'scope': time_range})
+            existing_song = collection.find_one({'spotify_id': song_id, 'time_range': time_range})
             if existing_song is None:
                 # Save the song to MongoDB
                 song_document = {
@@ -56,7 +56,7 @@ def returnMyFavSong():
                     'track_name': song_name,
                     'last_updated': song_last_updated,
                     'last_checked': last_checked,
-                    'scope': time_range
+                    'time_range': time_range
                 }
                 collection.insert_one(song_document)
             else:
