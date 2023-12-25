@@ -1,6 +1,6 @@
 # 🎵 Spotify API - whosFritz
 
-This project utilizes the Spotify API with the [spotipy](https://github.com/spotipy-dev/spotipy) library to display my favorite song on my website based on the last 4 weeks. The backend is built with Flask, and the data is stored in MongoDB. MongoDB was chosen for its document-based data architecture.
+This project utilizes the Spotify API with the [spotipy](https://github.com/spotipy-dev/spotipy) library to display my favorite song on my website based on the last 4 weeks, 6 months and over several years. The backend is built with Flask, and the data is stored in MongoDB. MongoDB was chosen for its document-based data architecture.
 
 ![how it works](how-it-works-now.png)
 
@@ -22,7 +22,7 @@ The purpose of this project is to provide a simple backend service that interact
 **Note:**
 For security reasons, this project does not directly connect to the Spotify API from the client side. Instead, it utilizes a Flask backend, ensuring that sensitive information like API credentials is not exposed to the public. Additionally, to mitigate potential issues with the Spotify API rate limits or downtimes, the retrieved data is cached locally, providing a more reliable experience for users.
 
-- Retrieves the user's favorite song from the last 4 weeks using the Spotify API.
+- Retrieves the user's favorite song from the past weeks, months, years using the Spotify API.
 - Stores the song data in a MongoDB database for future reference.
 - Provides a Flask API endpoint for easy integration into web applications.
 - Demonstrates how to use environment variables for secure configuration.
