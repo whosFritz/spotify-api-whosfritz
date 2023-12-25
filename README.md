@@ -2,7 +2,7 @@
 
 This project utilizes the Spotify API with the [spotipy](https://github.com/spotipy-dev/spotipy) library to display my favorite song on my website based on the last 4 weeks. The backend is built with Flask, and the data is stored in MongoDB. MongoDB was chosen for its document-based data architecture.
 
-![how it works](how-it-works.png)
+![how it works](how-it-works-now.png)
 
 ## Table of Contents
 
