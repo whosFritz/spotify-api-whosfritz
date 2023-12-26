@@ -36,6 +36,7 @@ Before running the application, you need to have the following installed:
 - Python3 🐍
 - Pip (Python package installer) 📦
 - MongoDB (Make sure the MongoDB server is running) 🚀
+- Try it first on your local machine.
 
 ### Installation
 
