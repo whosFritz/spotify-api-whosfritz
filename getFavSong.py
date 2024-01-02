@@ -30,9 +30,10 @@ db = client['favSongswhosfritz']
 collection = db['favSongswhosfritz']
 time_ranges = ['short_term', 'medium_term', 'long_term']
 
-def returnMyFavSong():
-    
+def returnMyFavSong():    
     for time_range in time_ranges:
+        new = 0
+        old = 0
         results = sp.current_user_top_tracks(
             time_range=time_range,
             limit=1,
@@ -59,10 +60,14 @@ def returnMyFavSong():
                     'time_range': time_range
                 }
                 collection.insert_one(song_document)
+                new += 1
             else:
                 # Update the last_checked field
-                collection.update_one({'spotify_id': song_id}, {'$set': {'last_checked': last_checked}})
-
+                old += 1
+                collection.update_one({'spotify_id': song_id}, {'$set': {'last_checked': last_checked}})                
+            print('New: ' + str(new) + ' Old: ' + str(old) + ' ' + str(last_checked))
+        else:
+            print('No songs found for time range: ' + time_range)
 
 # Call the function to get and save the favorite song
 returnMyFavSong()
