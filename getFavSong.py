@@ -68,7 +68,7 @@ def returnMyFavSong():
                 collection.update_one({'spotify_id': song_id}, {'$set': {'last_checked': last_checked}})                
         else:
             print('No songs found for time range: ' + time_range)
-    print(str(last_checked) + ' ' + 'New: ' + str(new) + ' Old: ' + str(old))
+    print(str(last_checked) + ' - ' + 'New: ' + str(new) + ' Old: ' + str(old))
 
 # Call the function to get and save the favorite song
 returnMyFavSong()
