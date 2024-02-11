@@ -69,7 +69,8 @@ Before running the application, you need to have the following installed:
    SPOTIPY_CLIENT_SECRET=your_client_secret
    SPOTIPY_REDIRECT_URI=your_redirect_uri
    MONGODB_URI=your_mongodb_uri
-   ENDPOINT_PATH=/your/api/endpoint
+   DB_NAME=your_db_name
+   COLLECTION_NAME=your_collection_name
    ```
 
 4. Run the Flask application:

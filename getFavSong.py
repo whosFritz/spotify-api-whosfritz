@@ -13,6 +13,8 @@ client_id = os.getenv('SPOTIPY_CLIENT_ID')
 client_secret = os.getenv('SPOTIPY_CLIENT_SECRET')
 redirect_uri = os.getenv('SPOTIPY_REDIRECT_URI')
 mongodb_uri = os.getenv('MONGODB_URI')
+db_name = os.getenv('DB_NAME')
+collection_name = os.getenv('COLLECTION_NAME')
 
 scope = 'user-top-read'
 sp = spotipy.Spotify(
@@ -26,8 +28,8 @@ sp = spotipy.Spotify(
 
 # Connect to MongoDB
 client = MongoClient(mongodb_uri)
-db = client['favSongswhosfritz']
-collection = db['favSongswhosfritz']
+db = client[db_name]
+collection = db[collection_name]
 time_ranges = ['short_term', 'medium_term', 'long_term']
 
 def returnMyFavSong():
