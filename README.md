@@ -17,14 +17,13 @@ This project utilizes the Spotify API with the [spotipy](https://github.com/spot
 
 ## Introduction
 
-The purpose of this project is to provide a simple backend service that interacts with the Spotify API to retrieve the user's favorite song from the last 4 weeks. The Flask application serves as an API endpoint that can be integrated into a website to display the user's favorite song dynamically.
+The purpose of this project is to provide a simple backend service that interacts with the Spotify API to retrieve the user's favorite song from the last 4 weeks.
 
 **Note:**
 For security reasons, this project does not directly connect to the Spotify API from the client side. Instead, it utilizes a Flask backend, ensuring that sensitive information like API credentials is not exposed to the public. Additionally, to mitigate potential issues with the Spotify API rate limits or downtimes, the retrieved data is cached locally, providing a more reliable experience for users.
 
 - Retrieves the user's favorite song from the past weeks, months, years using the Spotify API.
 - Stores the song data in a MongoDB database for future reference.
-- Provides a Flask API endpoint for easy integration into web applications.
 - Demonstrates how to use environment variables for secure configuration.
 
 ## Getting Started
@@ -78,17 +77,7 @@ Before running the application, you need to have the following installed:
    ```bash
    python app.py
    ```
-
-5. Access the API endpoint in your web browser or integrate it into your website.
-
-   The API endpoint is accessible at:
-
-   ```bash
-   curl http://localhost:8088/your/api/endpoint
-   ```
-
-   This endpoint returns JSON data containing the user's favorite song information.
-
+   
 ### Contributing
 
 Feel free to contribute to this project. You can submit bug reports, feature requests, or even open a pull request. 🤝
