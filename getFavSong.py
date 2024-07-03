@@ -4,9 +4,16 @@ import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 from pymongo import MongoClient
 import datetime
+import schedule
+import time
+import logging
 
 # Load environment variables from .env file
 load_dotenv()
+
+# Setup logging
+log_file_path = '/logs/spotify_fetch.log'
+logging.basicConfig(filename=log_file_path, level=logging.INFO, format='%(asctime)s - %(message)s')
 
 # Retrieve environment variables
 client_id = os.getenv('SPOTIPY_CLIENT_ID')
@@ -69,11 +76,19 @@ def returnMyFavSong():
                 old += 1
                 collection.update_one({'spotify_id': song_id}, {'$set': {'last_checked': last_checked}})                
         else:
-            print('No songs found for time range: ' + time_range)
-    print(str(last_checked) + ' - ' + 'New: ' + str(new) + ' Old: ' + str(old))
+            logging.info('No songs found for time range: %s', time_range)
+    logging.info('%s - New: %d Old: %d', last_checked, new, old)
 
-# Call the function to get and save the favorite song
+# Run the function once when the script starts
 returnMyFavSong()
 
-# Close the MongoDB connection
+# Schedule the job to run every 6 hours
+schedule.every(6).hours.do(returnMyFavSong)
+
+# Execution loop
+while True:
+    schedule.run_pending()
+    time.sleep(1)
+
+# Close the MongoDB connection when the script stops
 client.close()

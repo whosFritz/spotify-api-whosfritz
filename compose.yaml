@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  spotifyfetch:
+    build:
+      context: .
+    volumes:
+      - ./logs:/logs
+    networks:
+      - portfolio_network
+
+networks:
+  portfolio_network:
+    external: true
