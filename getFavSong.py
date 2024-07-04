@@ -13,7 +13,21 @@ load_dotenv()
 
 # Setup logging
 log_file_path = '/logs/spotify_fetch.log'
-logging.basicConfig(filename=log_file_path, level=logging.INFO, format='%(message)s')
+logging.basicConfig(level=logging.INFO, format='%(message)s')
+
+file_handler = logging.FileHandler(log_file_path)
+file_handler.setLevel(logging.INFO)
+
+console_handler = logging.StreamHandler()
+console_handler.setLevel(logging.INFO)
+
+formatter = logging.Formatter('%(message)s')
+file_handler.setFormatter(formatter)
+console_handler.setFormatter(formatter)
+
+logger = logging.getLogger()
+logger.addHandler(file_handler)
+logger.addHandler(console_handler)
 
 # Retrieve environment variables
 client_id = os.getenv('SPOTIPY_CLIENT_ID')
