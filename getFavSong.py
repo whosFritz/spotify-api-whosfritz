@@ -13,21 +13,7 @@ load_dotenv()
 
 # Setup logging
 log_file_path = '/logs/spotify_fetch.log'
-logging.basicConfig(level=logging.INFO, format='%(message)s')
-
-file_handler = logging.FileHandler(log_file_path)
-file_handler.setLevel(logging.INFO)
-
-console_handler = logging.StreamHandler()
-console_handler.setLevel(logging.INFO)
-
-formatter = logging.Formatter('%(message)s')
-file_handler.setFormatter(formatter)
-console_handler.setFormatter(formatter)
-
-logger = logging.getLogger()
-logger.addHandler(file_handler)
-logger.addHandler(console_handler)
+logging.basicConfig(filename=log_file_path, level=logging.INFO, format='%(asctime)s - %(message)s')
 
 # Retrieve environment variables
 client_id = os.getenv('SPOTIPY_CLIENT_ID')
@@ -90,12 +76,14 @@ def returnMyFavSong():
                     changes.append(f'Changed song for time range {time_range}: {existing_song["track_name"]} to {song_name}')
                 collection.update_one({'spotify_id': song_id}, {'$set': {'last_checked': last_checked}})
         else:
+            print(f'No songs found for time range: {time_range}')
             logging.info('No songs found for time range: %s', time_range)
     
     log_message = f'{last_checked.strftime("%Y-%m-%d %H:%M:%S.%f")} - New: {new} Old: {old}'
     if changes:
         log_message += '\n' + '\n'.join(changes)
     
+    print(log_message)
     logging.info(log_message)
 
 # Run the function once when the script starts
