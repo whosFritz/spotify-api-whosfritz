@@ -13,7 +13,7 @@ load_dotenv()
 
 # Setup logging
 log_file_path = '/logs/spotify_fetch.log'
-logging.basicConfig(filename=log_file_path, level=logging.INFO, format='%(asctime)s - %(message)s')
+logging.basicConfig(filename=log_file_path, level=logging.INFO, format='%(message)s')
 
 # Retrieve environment variables
 client_id = os.getenv('SPOTIPY_CLIENT_ID')
@@ -42,8 +42,9 @@ time_ranges = ['short_term', 'medium_term', 'long_term']
 def returnMyFavSong():
     new = 0
     old = 0    
+    changes = []
+    
     for time_range in time_ranges:
-        
         results = sp.current_user_top_tracks(
             time_range=time_range,
             limit=1,
@@ -54,14 +55,11 @@ def returnMyFavSong():
             song = results['items'][0]
             song_name = song['name']
             song_id = song['id']
-            # Convert the date string into a timestamp in format YYYY-MM-DD HH:MM:SS
             song_last_updated = datetime.datetime.now()
             last_checked = datetime.datetime.now()
 
-            # Check if the song already exists in the database
             existing_song = collection.find_one({'spotify_id': song_id, 'time_range': time_range})
             if existing_song is None:
-                # Save the song to MongoDB
                 song_document = {
                     'spotify_id': song_id,
                     'track_name': song_name,
@@ -71,13 +69,20 @@ def returnMyFavSong():
                 }
                 collection.insert_one(song_document)
                 new += 1
+                changes.append(f'New song added: {song_name} for time range {time_range}')
             else:
-                # Update the last_checked field
                 old += 1
-                collection.update_one({'spotify_id': song_id}, {'$set': {'last_checked': last_checked}})                
+                if existing_song['track_name'] != song_name:
+                    changes.append(f'Changed song for time range {time_range}: {existing_song["track_name"]} to {song_name}')
+                collection.update_one({'spotify_id': song_id}, {'$set': {'last_checked': last_checked}})
         else:
             logging.info('No songs found for time range: %s', time_range)
-    logging.info('%s - New: %d Old: %d', last_checked, new, old)
+    
+    log_message = f'{last_checked.strftime("%Y-%m-%d %H:%M:%S.%f")} - New: {new} Old: {old}'
+    if changes:
+        log_message += '\n' + '\n'.join(changes)
+    
+    logging.info(log_message)
 
 # Run the function once when the script starts
 returnMyFavSong()
