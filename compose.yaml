@@ -8,7 +8,7 @@ services:
       - ./logs:/logs
     networks:
       - portfolio_network
-    restart: unless-stoppedgit
+    restart: unless-stopped
 
 networks:
   portfolio_network:
