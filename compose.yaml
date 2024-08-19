@@ -4,12 +4,12 @@ services:
   spotifyfetch:
     build: .
     environment:
-      - SPOTIPY_CLIENT_ID=cac3670708f643faafbe74efce5106a6
-      - SPOTIPY_CLIENT_SECRET=cfb801e9d9ef488ab791d20583c776dc
-      - SPOTIPY_REDIRECT_URI=http://localhost:8089/callback
-      - MONGODB_URI=mongodb://mongo_container:27017/
-      - DB_NAME=favSongswhosfritz
-      - COLLECTION_NAME=favSongswhosfritz
+      - SPOTIPY_CLIENT_ID=yourid
+      - SPOTIPY_CLIENT_SECRET=yoursecret
+      - SPOTIPY_REDIRECT_URI=yourcallbackurl
+      - MONGODB_URI=yourmongouri
+      - DB_NAME=yourdbname
+      - COLLECTION_NAME=yourcollectionname
     volumes:
       - ./logs:/logs
     networks:
