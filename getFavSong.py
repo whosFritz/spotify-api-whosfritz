@@ -35,8 +35,11 @@ sp = spotipy.Spotify(
 
 # Connect to MongoDB
 client = MongoClient(mongodb_uri)
+print('Connected to MongoDB')
 db = client[db_name]
+print('Connected to database')
 collection = db[collection_name]
+print('Connected to collection')
 time_ranges = ['short_term', 'medium_term', 'long_term']
 
 def returnMyFavSong():
@@ -52,6 +55,7 @@ def returnMyFavSong():
         )
     
         if 'items' in results and len(results['items']) > 0:
+            print(f'Found songs for time range: {time_range}')
             song = results['items'][0]
             song_name = song['name']
             song_id = song['id']
@@ -87,6 +91,7 @@ def returnMyFavSong():
     logging.info(log_message)
 
 # Run the function once when the script starts
+print('Running the function once')
 returnMyFavSong()
 
 # Schedule the job to run every 6 hours
