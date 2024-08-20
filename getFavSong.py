@@ -86,8 +86,6 @@ def returnMyFavSong():
     print(log_message)
     logging.info(log_message)
 
-# Run the function once when the script starts
-print('Running the function once')
 returnMyFavSong()
 
 # Schedule the job to run every 6 hours
